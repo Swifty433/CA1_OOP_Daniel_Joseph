@@ -56,14 +56,13 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         boolean isRunning = true;
         while(isRunning){
-            System.out.println("Option 1: Sort By Date. ");
+            System.out.println("\nOption 1: Sort By Date. ");
             System.out.println("Option 2: Sort By Duration. ");
             System.out.println("Option 3: Sort By Distance. ");
             System.out.println("Option 4: Sort By Average Heart Rate. ");
             System.out.println("Option 5: Close Programme. ");
 
             int input = keyboard.nextInt();
-            String input2 = keyboard.nextLine();
             String ans2;
             int ans;
             switch (input){
