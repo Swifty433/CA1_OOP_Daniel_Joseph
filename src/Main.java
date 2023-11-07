@@ -126,8 +126,47 @@ public class Main {
                     }
                     break;
                 case 3:
-
-
+                    ans = ascOrDesc();
+                    if (ans == 1)
+                    {
+                        Collections.sort(activities, new Comparator<Activity>() {
+                            @Override
+                            public int compare(Activity o1, Activity o2) {
+                                if (o1.getDistance()>o2.getDistance())
+                                {
+                                    return 1;
+                                }
+                                else if (o1.getDistance()<o2.getDistance())
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            }
+                        });
+                        printActivities(activities);
+                    }
+                    else if(ans == 2)
+                    {
+                        Collections.sort(activities, new Comparator<Activity>() {
+                            @Override
+                            public int compare(Activity o1, Activity o2) {
+                                if (o1.getDistance()>o2.getDistance())
+                                {
+                                    return -1;
+                                }
+                                else if (o1.getTime()<o2.getTime())
+                                {
+                                    return 1;
+                                }
+                                return 0;
+                            }
+                        });
+                        printActivities(activities);
+                    }
+                    else
+                    {
+                        System.out.println("Invalid Input");
+                    }
                     break;
                 case 4:
 
