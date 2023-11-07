@@ -5,8 +5,32 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+
+    public static String getFile() {
+        // reference to code https://www.tutorialspoint.com/how-to-get-list-of-all-files-folders-from-a-folder-in-java
+        //code references folder and reads file names from it
+        File directoryPath = new File("csvFiles");
+        String contents[] = directoryPath.list();
+        System.out.println("Available Data:");
+        for (int i = 0; i < contents.length; i++) {
+            System.out.println( i + ": " + contents[i]);
+        }
+
+        int fileIndex = -1;
+        Scanner keyboard = new Scanner(System.in);
+        while (fileIndex < 0 || fileIndex >= contents.length) {
+            fileIndex = keyboard.nextInt();
+
+            if (fileIndex < 0 || fileIndex >= contents.length) {
+                System.out.println("Invalid!");
+            }
+        }
+
+        return "csvFiles/" + contents[fileIndex];
+    }
+
     public static void main(String[] args) {
-        String fileName = "activity_data_10.csv";
+        String fileName = getFile();
         ArrayList<Activity> activities = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
