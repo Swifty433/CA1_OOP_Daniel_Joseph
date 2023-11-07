@@ -60,8 +60,11 @@ public class Main {
             System.out.println("Option 2: Sort By Duration. ");
             System.out.println("Option 3: Sort By Distance. ");
             System.out.println("Option 4: Sort By Average Heart Rate. ");
+            System.out.println("Option 5: Close Programme. ");
 
             int input = keyboard.nextInt();
+            String input2 = keyboard.nextLine();
+            String ans2;
             int ans;
             switch (input){
                 case 1:
@@ -169,16 +172,72 @@ public class Main {
                     }
                     break;
                 case 4:
+                    ans = ascOrDesc();
+                    if (ans == 1)
+                    {
+                        Collections.sort(activities, new Comparator<Activity>() {
+                            @Override
+                            public int compare(Activity o1, Activity o2) {
+                                if (o1.getAvHeartRate()>o2.getAvHeartRate())
+                                {
+                                    return 1;
+                                }
+                                else if (o1.getAvHeartRate()<o2.getAvHeartRate())
+                                {
+                                    return -1;
+                                }
+                                return 0;
+                            }
+                        });
+                        printActivities(activities);
+                    }
+                    else if(ans == 2)
+                    {
+                        Collections.sort(activities, new Comparator<Activity>() {
+                            @Override
+                            public int compare(Activity o1, Activity o2) {
+                                if (o1.getAvHeartRate()>o2.getAvHeartRate())
+                                {
+                                    return -1;
+                                }
+                                else if (o1.getAvHeartRate()<o2.getAvHeartRate())
+                                {
+                                    return 1;
+                                }
+                                return 0;
+                            }
+                        });
+                        printActivities(activities);
+                    }
+                    else
+                    {
+                        System.out.println("Invalid Input");
+                    }
 
                     break;
                 case 5:
-                    isRunning = false;
+                    ans2 = closeCode();
+                    if(Objects.equals(ans2, "Y") || Objects.equals(ans2, "y"))
+                    {
+                        isRunning = false;
+                    }
+                    else if (Objects.equals(ans2, "N") || Objects.equals(ans2, "n"))
+                    {
+                        break;
+                    }
                     break;
                 default:
                     System.out.println("Invalid Input. ");
                     break;
             }
         }
+    }
+
+    private static String closeCode()
+    {
+        System.out.println("Are you sure? = Y: \n Actually No! = N:");
+        Scanner keyboard = new Scanner(System.in);
+        return  keyboard.nextLine();
     }
 
     private static int ascOrDesc()
