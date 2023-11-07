@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Date;
 
 abstract class Activity implements Comparable<Activity>{
