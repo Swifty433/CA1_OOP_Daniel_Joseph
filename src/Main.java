@@ -11,7 +11,7 @@ public class Main {
         //code references folder and reads file names from it
         File directoryPath = new File("csvFiles");
         String contents[] = directoryPath.list();
-        System.out.println("Available Data:");
+        System.out.println("Available Files: ");
         for (int i = 0; i < contents.length; i++) {
             System.out.println( i + ": " + contents[i]);
         }
@@ -34,12 +34,13 @@ public class Main {
         ArrayList<Activity> activities = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
+        //scanning the file
         try (Scanner sc = new Scanner(new File(fileName)))
         {
             if(sc.hasNextLine())
                 sc.nextLine();
 
-
+            //reading from the file
             while (sc.hasNextLine())
             {
                 String line = sc.nextLine();
@@ -59,6 +60,7 @@ public class Main {
                 double avHeartRate = Double.parseDouble(tokens[4]);
 
 
+                // the different types of activities, 'Running', 'Cycling' and 'Swimming'
                 if(type.equals("Running"))
                     activities.add(new Running(date ,duration, distance, avHeartRate));
                 else if(type.equals("Cycling"))
@@ -67,6 +69,7 @@ public class Main {
                     activities.add(new Swimming(date ,duration, distance, avHeartRate));
 
             }
+
 
         } catch (FileNotFoundException exception)
         {
@@ -77,7 +80,9 @@ public class Main {
         Collections.sort(activities);
         System.out.println(activities.toString());
 
+        // Scanner for menu
         Scanner keyboard = new Scanner(System.in);
+        //Boolean isRunning is set to true and is then checked, if boolean remains true then the menu will repeat.
         boolean isRunning = true;
         while(isRunning){
             System.out.println("\nOption 1: Sort By Date. ");
@@ -88,6 +93,8 @@ public class Main {
             System.out.println("Option 6: Calculate the calories burnt ");
             System.out.println("Option 7: Close Programme. ");
 
+
+            //case 1 - 4 are used to sort the data such as avHeartRate, duration, date and distance using a ascending or descending order
             int input = keyboard.nextInt();
             String ans2;
             int ans;
@@ -248,6 +255,7 @@ public class Main {
                     break;
                 case 6:
                     break;
+                    // Case 7 checks if the user wants to close the program, if the user select 'Y' or yes, the boolean isRunning will be set to false and the code will end.
                 case 7:
                     ans2 = closeCode();
                     if(Objects.equals(ans2, "Y") || Objects.equals(ans2, "y"))
@@ -265,6 +273,7 @@ public class Main {
             }
         }
     }
+
     private static double calculateKPH(Activity activity) {
         double hourConversion;
         if (activity.getTime() > 0) {
@@ -275,6 +284,8 @@ public class Main {
         }
     }
 
+
+    //Method to close the code if the user inputs 'Y' || 'y' else code will resume
     private static String closeCode()
     {
         System.out.println("Are you sure? = Y: \n Actually No! = N:");
@@ -282,6 +293,8 @@ public class Main {
         return  keyboard.nextLine();
     }
 
+
+    //method used to sort the code based on the users input of either ascending or descending
     private static int ascOrDesc()
     {
         System.out.println("Option 1: Sort By Ascending.");
@@ -290,6 +303,8 @@ public class Main {
         return keyboard.nextInt();
     }
 
+
+    // method to print the activities
     private static void printActivities(ArrayList <Activity> activities){
         for (Activity activity : activities)
         {
