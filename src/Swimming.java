@@ -6,4 +6,9 @@ public class Swimming extends Activity {
         super(date, time, distance, avHeartRate);
     }
 
+    /*@Override
+    public String toString() {
+        return "Swimming{}";
+    }
+     */
 }
