@@ -1,6 +1,6 @@
 import java.util.Date;
 
-abstract class Activity implements Comparable<Activity>{
+abstract class Activity implements Comparable<Activity> {
 
     private Date date;
     private double time, distance, avHeartRate;
@@ -14,9 +14,9 @@ abstract class Activity implements Comparable<Activity>{
 
 
     @Override
-    public int compareTo(Activity o){
-        if(this == null && o == null) return 0;
-        if(o == null) return 1;
+    public int compareTo(Activity o) {
+        if (this == null && o == null) return 0;
+        if (o == null) return 1;
         return this.date.compareTo(o.getDate());
     }
 
@@ -52,13 +52,12 @@ abstract class Activity implements Comparable<Activity>{
         this.avHeartRate = avHeartRate;
     }
 
+    public String getDateString(){
+        return date.getDate() + "/" + (date.getMonth()+1) + "/" + (date.getYear()+1900);
+    }
+
     @Override
     public String toString() {
-        return "Activity{" +
-                "date=" + date +
-                ", time=" + time +
-                ", distance=" + distance +
-                ", avHeartRate=" + avHeartRate +
-                '}';
+        return "Duration: " + time + "\nDistance: " + distance + "\nDate: " + getDateString() + "\nAverage Heart Rate: " + avHeartRate + "\n=======\n";
     }
 }

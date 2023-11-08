@@ -6,9 +6,9 @@ public class Swimming extends Activity {
         super(date, time, distance, avHeartRate);
     }
 
-    /*@Override
+    @Override
     public String toString() {
-        return "Swimming{}";
+        return "\n=======\n" + "Swimming\n" + super.toString();
+        //return super.toString() + "Swimming\t\t" + super.getTime() + "\t\t" + super.getDistance() + "\t\t" + super.getDateString() + "\t\t" + super.getAvHeartRate();
     }
-     */
 }
