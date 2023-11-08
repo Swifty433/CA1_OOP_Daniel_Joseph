@@ -84,7 +84,9 @@ public class Main {
             System.out.println("Option 2: Sort By Duration. ");
             System.out.println("Option 3: Sort By Distance. ");
             System.out.println("Option 4: Sort By Average Heart Rate. ");
-            System.out.println("Option 5: Close Programme. ");
+            System.out.println("Option 5: Calculate the intensity ");
+            System.out.println("Option 6: Calculate the calories burnt ");
+            System.out.println("Option 7: Close Programme. ");
 
             int input = keyboard.nextInt();
             String ans2;
@@ -239,6 +241,14 @@ public class Main {
 
                     break;
                 case 5:
+                    for (Activity activity : activities) {
+                        double kmPerHour = calculateKPH(activity);
+                        System.out.println(activity.toString() + " - Kilometers per Hour: " + kmPerHour);
+                    }
+                    break;
+                case 6:
+                    break;
+                case 7:
                     ans2 = closeCode();
                     if(Objects.equals(ans2, "Y") || Objects.equals(ans2, "y"))
                     {
@@ -253,6 +263,15 @@ public class Main {
                     System.out.println("Invalid Input. ");
                     break;
             }
+        }
+    }
+    private static double calculateKPH(Activity activity) {
+        double hourConversion;
+        if (activity.getTime() > 0) {
+            hourConversion = activity.getTime()/60;
+            return activity.getDistance() / hourConversion;
+        } else {
+            return 0;
         }
     }
 

@@ -12,6 +12,7 @@ abstract class Activity implements Comparable<Activity>{
         this.avHeartRate = avHeartRate;
     }
 
+
     @Override
     public int compareTo(Activity o){
         if(this == null && o == null) return 0;
