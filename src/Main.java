@@ -61,17 +61,18 @@ public class Main {
 
 
                 // the different types of activities, 'Running', 'Cycling' and 'Swimming'
+                double calBurned = 0;
                 if (type.equals("Running")) {
-                    activities.add(new Running(date, duration, distance, avHeartRate));
-                    RunActivities.add(new Running(date, duration, distance, avHeartRate));
+                    activities.add(new Running(date, duration, distance, avHeartRate, type, calBurned));
+                    RunActivities.add(new Running(date, duration, distance, avHeartRate, type,calBurned));
                 }
                 else if (type.equals("Cycling")) {
-                    activities.add(new Cycling(date, duration, distance, avHeartRate));
-                    CycleActivities.add(new Cycling(date, duration, distance, avHeartRate));
+                    activities.add(new Cycling(date, duration, distance, avHeartRate, type,calBurned));
+                    CycleActivities.add(new Cycling(date, duration, distance, avHeartRate, type, calBurned));
                 }
                 else if (type.equals("Swimming")) {
-                    activities.add(new Swimming(date, duration, distance, avHeartRate));
-                    SwimActivities.add(new Swimming(date, duration, distance, avHeartRate));
+                    activities.add(new Swimming(date, duration, distance, avHeartRate, type, calBurned));
+                    SwimActivities.add(new Swimming(date, duration, distance, avHeartRate, type, calBurned));
                 }
             }
 
@@ -221,10 +222,13 @@ public class Main {
                 case 5:
                     for (Activity activity : activities) {
                         double kmPerHour = calculateKPH(activity);
-                        System.out.println(activity.toString() + " - Kilometers per Hour: " + kmPerHour);
+                        System.out.println(activity.getIntensity());
                     }
                     break;
                 case 6:
+                    for (Activity activity : activities) {
+                        System.out.println(activity.getCalBurned());
+                    }
                     break;
                 // Case 7 checks if the user wants to close the program, if the user select 'Y' or yes, the boolean isRunning will be set to false and the code will end.
                 case 7:
@@ -264,7 +268,9 @@ public class Main {
         }
     }
 
-    private static double calculateKPH(Activity activity) {
+
+
+    public static double calculateKPH(Activity activity) {
         double hourConversion;
         if (activity.getTime() > 0) {
             hourConversion = activity.getTime() / 60;
